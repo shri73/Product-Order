@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: zuul-gateway    
+eureka:
+  client:
+     serviceUrl:
+         defaultZone : http://localhost:8761/eureka/ 
+         fetchRegistry: true            
+              
+server:
+  port : 8077
+logging:
+  level:
+    root: INFO  
+zuul:
+  routes:
+    order:
+      path: /order/**   
+      url: http://localhost:8080
+      service-id: order
+      stripPrefix: false
+    products:
+      path: /products/**
+      url: http://localhost:8081
+      service-id: product
+      stripPrefix: false
+      
+  host:
+     socket-timeout-millis : 30000
+     
+    
